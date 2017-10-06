@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SimpleCounter</string>
+    <string name="Finish">finish</string>
+    <string name="si">SÍ</string>
+    <string name="no">NO</string>
+    <string name="numero">numero</string>
+
+</resources>
