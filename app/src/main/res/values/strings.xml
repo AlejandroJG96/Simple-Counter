@@ -4,5 +4,6 @@
     <string name="si">SÍ</string>
     <string name="no">NO</string>
     <string name="numero">numero</string>
+    <string name="confirmmessage">Estas segur que vols acabar?</string>
 
 </resources>

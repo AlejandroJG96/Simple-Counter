@@ -7,30 +7,43 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button BOTONSUMAR, BOTONRESTAR, BOTONACABAR;
-    private TextView Numero;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BOTONSUMAR = (Button) findViewById(R.id.Botonsumar);
-        BOTONRESTAR = (Button) findViewById(R.id.Botonrestar);
-        BOTONACABAR = (Button) findViewById(R.id.Botonacabar);
-        Numero = (TextView) findViewById(R.id.elnumero);
+        Button BOTONSUMAR = (Button) findViewById(R.id.Botonsumar);
+        Button BOTONRESTAR= (Button) findViewById(R.id.Botonrestar);
+        Button BOTONACABAR= (Button) findViewById(R.id.Botonacabar);
+        final EditText number = (EditText) findViewById(R.id.editTextNumber);
 
 
         BOTONSUMAR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String numero1 = number.getText().toString();
+                int num1 = Integer.parseInt(numero1);
+                num1++;
+                String snum = String.format("%f", num1);
+                number.setText(snum);
 
+            }
+        });
+        BOTONRESTAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String numero2 = number.getText().toString();
+                int num = Integer.parseInt(numero2);
+                if(num>0){num--;}
+                else num=0;
+                String snum = String.format("%f", num);
+                number.setText(snum);
             }
         });
 
@@ -38,12 +51,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            String message =
-                    String.format(Locale.getDefault(), "Estas segur que vols acabr?");
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Acabar");
-            builder.setMessage(message);
+            builder.setMessage(R.string.confirmmessage);
             builder.setCancelable(false);
             builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                 @Override
@@ -51,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            builder.setNegativeButton(R.string.no, null);
+            builder.setNegativeButton(android.R.string.cancel, null);
 
             builder.create().show();
 
         }
     });
     }
+
+
 }
 
 
